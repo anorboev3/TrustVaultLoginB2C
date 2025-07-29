@@ -8,7 +8,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100vh;
     background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%);
-    background-image: url('background-image.jpg');
+    background-image: url('https://anorboev3.github.io/TrustVaultLoginB2C/background-image.jpg');
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
