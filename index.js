@@ -181,6 +181,7 @@
 
     // Initialize when DOM is ready
     function initialize() {
+      debugger
         console.log('Initializing Azure B2C customization script...');
         
         if (document.readyState === 'loading') {
