@@ -141,7 +141,8 @@ body::before {
 /* Style the injected form elements */
 #api .intro,
 #api .divider,
-#api .create {
+#api .create,
+#api #forgotPassword {
     display: none !important;
 }
 
