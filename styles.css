@@ -139,8 +139,13 @@ body::before {
 
 
 /* Style the injected form elements */
+#api .heading,
+#api .divider,
+#api .create {
+    display: none !important;
+}
 
-#api .heading {
+#api .heading h1 {
     text-align: center !important;
     margin-bottom: 32px !important;
     color: #1f2937 !important;
