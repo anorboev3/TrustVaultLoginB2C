@@ -58,9 +58,6 @@
         try {
             console.log('Starting B2C customizations...');
             
-            // Remove unwanted elements
-            removeUnwantedElements();
-            
             // Handle forgot password link transfer
             transferForgotPasswordLink();
             
@@ -68,19 +65,6 @@
         } catch (error) {
             console.error('Error applying B2C customizations:', error);
         }
-    }
-
-    // Function to physically remove unwanted elements
-    function removeUnwantedElements() {
-        CONFIG.elementsToRemove.forEach(selector => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach(element => {
-                if (element) {
-                    console.log(`Removing element: ${selector}`);
-                    element.remove(); // Physically remove from DOM
-                }
-            });
-        });
     }
 
     // Function to transfer forgot password link and remove original
@@ -119,66 +103,6 @@
         }
     }
 
-    // Function to ensure elements stay removed (anti-tampering)
-    function setupAntiTampering() {
-        // Create a more aggressive observer to ensure elements stay removed
-        const antiTamperObserver = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'childList') {
-                    // Re-apply removal if elements are re-added
-                    CONFIG.elementsToRemove.forEach(selector => {
-                        const elements = document.querySelectorAll(selector);
-                        elements.forEach(element => {
-                            if (element && element.parentNode) {
-                                console.log(`Re-removing tampering attempt: ${selector}`);
-                                element.remove();
-                            }
-                        });
-                    });
-                }
-            });
-        });
-
-        // Start anti-tampering observer
-        const apiElement = document.getElementById('api');
-        if (apiElement) {
-            antiTamperObserver.observe(apiElement, {
-                childList: true,
-                subtree: true
-            });
-        }
-    }
-
-    // Enhanced removal function that handles dynamic content
-    function aggressiveElementRemoval() {
-        const removeElements = () => {
-            CONFIG.elementsToRemove.forEach(selector => {
-                const elements = document.querySelectorAll(selector);
-                elements.forEach(element => {
-                    if (element) {
-                        // Mark for removal to prevent re-appearance
-                        element.style.display = 'none !important';
-                        element.style.visibility = 'hidden !important';
-                        element.setAttribute('data-removed', 'true');
-                        
-                        // Remove from DOM
-                        setTimeout(() => {
-                            if (element.parentNode) {
-                                element.remove();
-                            }
-                        }, 100);
-                    }
-                });
-            });
-        };
-
-        // Run removal multiple times to catch dynamic content
-        removeElements();
-        setTimeout(removeElements, 500);
-        setTimeout(removeElements, 1000);
-        setTimeout(removeElements, 2000);
-    }
-
     // Initialize when DOM is ready
     function initialize() {
       debugger
@@ -204,9 +128,7 @@
     // Expose functions globally for debugging/external access
     window.B2CCustomizer = {
         applyCustomizations,
-        removeUnwantedElements,
         transferForgotPasswordLink,
-        aggressiveElementRemoval,
         config: CONFIG
     };
 
