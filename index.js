@@ -74,21 +74,15 @@
         const targetElement = document.querySelector(CONFIG.forgotPasswordTarget);
         
         if (sourceElement && targetElement) {
-            // Look for the forgot password link within the source element
-            const forgotLink = sourceElement.querySelector('a[href*="forgotpassword"], a[href*="forgot"], a[href*="reset"]');
+            // Since sourceElement is already the <a> tag, directly get its href
+            const href = sourceElement.href;
+            console.log(`Found forgot password link: ${href}`);
             
-            if (forgotLink) {
-                const href = forgotLink.href;
-                console.log(`Found forgot password link: ${href}`);
-                
-                // Update the target link with the actual href
-                targetElement.href = href;
-                targetElement.target = '_self'; // Ensure it opens in the same window
-                
-                console.log(`Updated target link href to: ${href}`);
-            } else {
-                console.warn('Forgot password link not found in source element');
-            }
+            // Update the target link with the actual href
+            targetElement.href = href;
+            targetElement.target = '_self'; // Ensure it opens in the same window
+            
+            console.log(`Updated target link href to: ${href}`);
             
             // Remove the original forgot password element
             console.log('Removing original forgot password element');
