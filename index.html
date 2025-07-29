@@ -6,17 +6,267 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Flying Donkey - Login</title>
-    <link rel="stylesheet" href="https://anorboev3.github.io/TrustVaultLoginB2C/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%);
+            background-image: url('https://anorboev3.github.io/TrustVaultLoginB2C/background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Animated background waves */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(30, 58, 138, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(30, 64, 175, 0.3) 0%, transparent 50%);
+            animation: wave 15s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: translateX(0) translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateX(-20px) translateY(-10px) scale(1.1);
+            }
+        }
+
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            z-index: 1;
+        }
+
+        .logo-container {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .login-form-container {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px) !important;
+            border-radius: 16px !important;
+            padding: 40px 32px !important;
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            width: 100% !important;
+            max-width: 380px !important;
+            animation: slideUp 0.6s ease-out !important;
+        }
+
+        .forgot-password {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 16px;
+        }
+
+        .forgot-password a {
+            color: #0ea5e9;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #0284c7;
+            text-decoration: underline;
+        }
+
+        /* Animation for logo appearance */
+        .logo {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Style the injected form elements */
+        #api .intro,
+        #api .divider,
+        #api .create,
+        #api #forgotPassword {
+            display: none !important;
+        }
+
+        #api .heading h1 {
+            text-align: center !important;
+            margin-bottom: 32px !important;
+            color: #1f2937 !important;
+            font-size: 24px !important;
+            font-weight: 600 !important;
+        }
+
+        #api .entry-item,
+        #api .buttons {
+            margin-top: 36px !important;
+        }
+
+        #api .entry label {
+            display: block !important;
+            margin-bottom: 8px !important;
+            color: #374151 !important;
+            font-weight: 500 !important;
+            font-size: 14px !important;
+        }
+
+        #api .entry input[type="email"],
+        #api .entry input[type="password"],
+        #api .entry input[type="text"] {
+            width: 100% !important;
+            padding: 14px 16px !important;
+            border: 2px solid #e5e7eb !important;
+            border-radius: 8px !important;
+            font-size: 16px !important;
+            transition: all 0.3s ease !important;
+            background: #ffffff !important;
+            color: #1f2937 !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        #api .entry input[type="email"]:focus,
+        #api .entry input[type="password"]:focus,
+        #api .entry input[type="text"]:focus {
+            outline: none !important;
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        #api .entry input::placeholder {
+            color: #9ca3af !important;
+        }
+
+        /* Style the submit button */
+        #api .buttons button[type="submit"],
+        #api .buttons input[type="submit"] {
+            width: 100% !important;
+            background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%) !important;
+            color: white !important;
+            border: none !important;
+            padding: 16px !important;
+            border-radius: 8px !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            margin-bottom: 0 !important;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3) !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        #api .buttons button[type="submit"]:hover,
+        #api .buttons input[type="submit"]:hover {
+            background: linear-gradient(135deg, #0891b2 0%, #0284c7 100%) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4) !important;
+        }
+
+        #api .buttons button[type="submit"]:active,
+        #api .buttons input[type="submit"]:active {
+            transform: translateY(0) !important;
+        }
+
+        /* Style error messages */
+        #api .error.pageLevel[aria-hidden="false"] {
+            background-color: #fef2f2 !important;
+            border: 1px solid #fca5a5 !important;
+            color: #dc2626 !important;
+            padding: 8px 12px !important;
+            border-radius: 6px !important;
+            margin-top: 8px !important;
+            font-size: 14px !important;
+        }
+
+        #api .error.itemLevel[aria-hidden="false"] {
+            color: #dc2626 !important;
+            padding-left: 2px !important;
+            font-size: 14px !important;
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .logo {
+                height: 50px;
+            }
+
+            #api {
+                padding: 32px 24px !important;
+                margin: 0 16px !important;
+            }
+        }
+    </style>
     <script defer>
         // Simple script to move forgot password link to bottom
         function moveForgotPasswordLink() {
             const originalLink = document.querySelector('#forgotPassword');
             const targetLink = document.querySelector('#newForgotPassword');
-            
+
             if (originalLink && targetLink) {
                 // Copy the href to the new link
                 targetLink.href = originalLink.href;
-                
+
                 // Remove the original link
                 originalLink.remove();
             }
@@ -26,7 +276,6 @@
         setTimeout(() => {
             moveForgotPasswordLink();
         }, 1000);
-    </script>
     </script>
 </head>
 

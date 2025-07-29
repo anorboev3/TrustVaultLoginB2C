@@ -96,20 +96,6 @@ body::before {
     text-decoration: underline;
 }
 
-
-
-/* Responsive design */
-@media (max-width: 480px) {
-    .login-container {
-        padding: 20px;
-        max-width: 100%;
-    }
-    
-    .logo {
-        height: 50px;
-    }
-}
-
 /* Animation for logo appearance */
 .logo {
     animation: fadeIn 0.8s ease-out;
@@ -136,7 +122,6 @@ body::before {
         transform: scale(1);
     }
 }
-
 
 /* Style the injected form elements */
 #api .intro,
@@ -207,7 +192,7 @@ body::before {
     font-weight: 600 !important;
     cursor: pointer !important;
     transition: all 0.3s ease !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 0 !important;
     box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3) !important;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
@@ -222,33 +207,6 @@ body::before {
 #api .buttons button[type="submit"]:active,
 #api .buttons input[type="submit"]:active {
     transform: translateY(0) !important;
-}
-
-/* Style forgot password link */
-#api .forgotPassword {
-    text-align: center !important;
-    font-size: 14px !important;
-    color: #6b7280 !important;
-    margin-top: 16px !important;
-}
-
-#api .forgotPassword a,
-#api a[href*="forgotpassword"] {
-    color: #0ea5e9 !important;
-    text-decoration: none !important;
-    font-weight: 500 !important;
-    transition: color 0.3s ease !important;
-}
-
-#api .forgotPassword a:hover,
-#api a[href*="forgotpassword"]:hover {
-    color: #0284c7 !important;
-    text-decoration: underline !important;
-}
-
-/* Hide social provider buttons if not needed */
-.claims-provider-list-buttons {
-    display: none !important;
 }
 
 /* Style error messages */
@@ -268,25 +226,17 @@ body::before {
     font-size: 14px !important;
 }
 
-/* Style validation messages */
-#api .attrEntry .error.itemLevel {
-    margin-top: 4px !important;
-    margin-bottom: 8px !important;
-}
-
-/* Required field indicator */
-#api .password-label .required,
-#api .required {
-    color: #dc2626 !important;
-}
-
-/* Remove default Azure B2C styling */
-#api .entry .textbox-item {
-    margin: 0 !important;
-}
-
-/* Style for responsive */
+/* Responsive design */
 @media (max-width: 480px) {
+    .login-container {
+        padding: 20px;
+        max-width: 100%;
+    }
+    
+    .logo {
+        height: 50px;
+    }
+    
     #api {
         padding: 32px 24px !important;
         margin: 0 16px !important;
