@@ -139,7 +139,7 @@ body::before {
 
 
 /* Style the injected form elements */
-#api .heading,
+#api .intro,
 #api .divider,
 #api .create {
     display: none !important;
