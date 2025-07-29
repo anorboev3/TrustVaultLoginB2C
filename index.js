@@ -111,11 +111,9 @@
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 waitForB2CContent();
-                setupAntiTampering();
             });
         } else {
             waitForB2CContent();
-            setupAntiTampering();
         }
 
         // Check if content is already loaded
